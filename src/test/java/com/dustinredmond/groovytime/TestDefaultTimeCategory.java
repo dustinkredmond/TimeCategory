@@ -1,4 +1,4 @@
-package com.dustinredmond.groovytimetests;
+package com.dustinredmond.groovytime;
 
 /*
  *  Copyright 2020  Dustin K. Redmond
