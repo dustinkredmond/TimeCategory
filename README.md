@@ -1,7 +1,7 @@
 # TimeCategory
 Java wrapper for Groovy's TimeCategory class
 
-Apache Groovy's `TimeCategory` class makes working with dates a breeze.
+Apache Groovy's `groovy.time.TimeCategory` class makes working with dates a breeze.
 
 ```
   use (TimeCategory) {
@@ -13,6 +13,11 @@ Apache Groovy's `TimeCategory` class makes working with dates a breeze.
 ```
 
 This super small library provides a Java wrapper to allow us to make similar calls in Java.
+We can get a `java.util.Date`, a `java.time.LocalDate`, or a `java.time.LocalDateTime`.
+
+We can either use chained method calls, or pass in a String which will be interpreted
+by Groovy. There is no advantage or disadvantage of using one over the other, but both
+syntaxes are included for developer convenience.
 
 ```
     import java.util.Date;
@@ -25,6 +30,9 @@ This super small library provides a Java wrapper to allow us to make similar cal
           Date tomorrow = TimeCategory.of(1).day().from().today();
           Date nextYear = TimeCategory.of(52).weeks().from().today();
           Date nextWeek = TimeCategory.of(1).week().from().now();
+
+          LocalDate tomorrow = TimeCategory.of("1.day.from.now").getLocalDate();
+          LocalDateTime aBitLater = TimeCategory.of("15.minutes.from.now").getLocalDateTime();
         } 
     
     } 
