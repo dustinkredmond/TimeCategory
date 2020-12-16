@@ -17,6 +17,8 @@ package com.dustinredmond.groovytime;
  */
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
@@ -41,6 +43,13 @@ public class TestScriptedTimeCategory {
         LocalDate d2 = LocalDate.now();
         long daysBetween = TestUtils.getDaysBetween(d2, d);
         assertEquals(-1, daysBetween);
+    }
+
+    @Test
+    public void testMinutesBetween() {
+        LocalDateTime d = TimeCategory.of("15.minutes.ago").getLocalDateTime();
+        LocalDateTime d2 = LocalDateTime.now();
+        assertEquals(-15, ChronoUnit.MINUTES.between(d2, d));
     }
 
 }

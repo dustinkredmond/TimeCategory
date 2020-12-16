@@ -17,6 +17,7 @@ package com.dustinredmond.groovytime;
  */
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
@@ -29,6 +30,14 @@ public class TestUtils {
 
     protected static LocalDate toLocalDate(Date date) {
         return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    }
+
+    protected static LocalDateTime toLocalDateTime(Date date) {
+        return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+    }
+
+    protected static long getDelta(ChronoUnit u, LocalDate d1, LocalDate d2) {
+        return u.between(d2, d1);
     }
 
 

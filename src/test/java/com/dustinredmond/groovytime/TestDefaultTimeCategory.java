@@ -17,6 +17,7 @@ package com.dustinredmond.groovytime;
  */
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
@@ -49,6 +50,13 @@ public class TestDefaultTimeCategory {
         LocalDate d = TestUtils.toLocalDate(ONE.days().ago().get());
         LocalDate d2 = LocalDate.now();
         assertEquals(-1, TestUtils.getDaysBetween(d2, d));
+    }
+
+    @Test
+    public void testMinutesAgo() {
+        LocalDateTime d = TimeCategory.of(15).minutes().ago().getLocalDateTime();
+        LocalDateTime d2 = LocalDateTime.now();
+        assertEquals(-15, ChronoUnit.MINUTES.between(d2, d));
     }
 
 

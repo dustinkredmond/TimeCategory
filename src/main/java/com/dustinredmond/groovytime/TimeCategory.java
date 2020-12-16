@@ -17,6 +17,7 @@ package com.dustinredmond.groovytime;
  */
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 
@@ -31,6 +32,10 @@ public interface TimeCategory {
 
     default LocalDate getLocalDate() {
         return get().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    }
+
+    default LocalDateTime getLocalDateTime() {
+        return get().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
     }
 
 }
