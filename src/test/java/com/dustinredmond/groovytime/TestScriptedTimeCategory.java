@@ -17,39 +17,30 @@ package com.dustinredmond.groovytime;
  */
 
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.temporal.ChronoUnit;
-import java.util.Date;
 import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
-public class TestDefaultTimeCategory {
+public class TestScriptedTimeCategory {
 
-    private final DefaultTimeCategory ONE = TimeCategory.of(1);
 
+    /**
+     * If this passes, we really don't need to test anything else, as
+     * the rest is handled via Apache Groovy via the GroovyShell object.
+     */
     @Test
-    public void testSmokeTest() {
-        // Basic smoke test. If this fails,
-        // we've done something very, very wrong.
-        assertNotNull(TimeCategory.of(0));
-    }
-
-    @Test
-    public void testFromNow() {
-        LocalDate d = TestUtils.toLocalDate(ONE.days().from().now().get());
+    public void testScriptedTimeCategory() {
+        LocalDate d = TestUtils.toLocalDate(TimeCategory.of("1.day.ago").get());
         LocalDate d2 = LocalDate.now();
-        assertEquals(1, TestUtils.getDaysBetween(d2, d));
-
+        long daysBetween = TestUtils.getDaysBetween(d2, d);
+        assertEquals(-1, daysBetween);
     }
 
     @Test
-    public void testAgo() {
-        LocalDate d = TestUtils.toLocalDate(ONE.days().ago().get());
+    public void testGetLocalDate() {
+        LocalDate d = TimeCategory.of("1.day.ago").getLocalDate();
         LocalDate d2 = LocalDate.now();
-        assertEquals(-1, TestUtils.getDaysBetween(d2, d));
+        long daysBetween = TestUtils.getDaysBetween(d2, d);
+        assertEquals(-1, daysBetween);
     }
-
 
 }

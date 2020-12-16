@@ -16,21 +16,23 @@ package com.dustinredmond.groovytime;
  *  limitations under the License.
  */
 
-import java.time.LocalDate;
-import java.time.ZoneId;
+import groovy.lang.GroovyShell;
 import java.util.Date;
 
-public interface TimeCategory {
+public class ScriptedTimeCategory implements TimeCategory {
 
-    Date get();
-    static DefaultTimeCategory of(int value) {
-        return new DefaultTimeCategory(value);
+    private final String code;
+
+    public ScriptedTimeCategory(String code) {
+        this.code = code;
     }
 
-    static ScriptedTimeCategory of(String code) { return new ScriptedTimeCategory(code); }
-
-    default LocalDate getLocalDate() {
-        return get().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    @Override
+    public Date get() {
+        GroovyShell shell = new GroovyShell();
+        return (Date) shell.evaluate("Date date = new Date(); "
+            + "use (groovy.time.TimeCategory) { date = " + this.code + " }; "
+            + "return date");
     }
 
 }

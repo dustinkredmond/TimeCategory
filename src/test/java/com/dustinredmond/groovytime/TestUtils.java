@@ -18,19 +18,18 @@ package com.dustinredmond.groovytime;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
-public interface TimeCategory {
+public class TestUtils {
 
-    Date get();
-    static DefaultTimeCategory of(int value) {
-        return new DefaultTimeCategory(value);
+    protected static long getDaysBetween(LocalDate d2, LocalDate d1) {
+        return ChronoUnit.DAYS.between(d2, d1);
     }
 
-    static ScriptedTimeCategory of(String code) { return new ScriptedTimeCategory(code); }
-
-    default LocalDate getLocalDate() {
-        return get().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    protected static LocalDate toLocalDate(Date date) {
+        return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
     }
+
 
 }
