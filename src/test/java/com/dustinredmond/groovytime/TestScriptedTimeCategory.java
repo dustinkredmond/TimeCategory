@@ -52,4 +52,18 @@ public class TestScriptedTimeCategory {
         assertEquals(-15, ChronoUnit.MINUTES.between(d2, d));
     }
 
+    @Test
+    public void test15MinutesFromNow() {
+        LocalDateTime d = TimeCategory.of("15.minutes.from.now").getLocalDateTime();
+        LocalDateTime d2 = LocalDateTime.now();
+        assertEquals(14, ChronoUnit.MINUTES.between(d2, d));
+    }
+
+    @Test
+    public void test20MinutesFromNow() {
+        LocalDateTime d = TimeCategory.of("20.minutes.from.now").getLocalDateTime();
+        LocalDateTime d2 = LocalDateTime.now();
+        assertEquals(19, ChronoUnit.MINUTES.between(d2, d));
+    }
+
 }
