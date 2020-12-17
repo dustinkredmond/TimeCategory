@@ -21,19 +21,57 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 
+/**
+ * {@code} TimeCategory is a wrapper class for {@code groovy.time.TimeCategory} and
+ * it's DSL. All API methods are reached through this interface's static methods.
+ */
 public interface TimeCategory {
 
-    Date get();
+    /**
+     * A builder-like syntax for Groovy's {@code TimeCategory} class that
+     * may be more familiar to Java developers.
+     * @param value An initial starting unit
+     * @return TimeCategory in which date is retrieved via
+     *         Java builder-style syntax.
+     */
     static DefaultTimeCategory of(int value) {
         return new DefaultTimeCategory(value);
     }
 
-    static ScriptedTimeCategory of(String code) { return new ScriptedTimeCategory(code); }
+    /**
+     * Invokes a call to {@code groovy.time.TimeCategory}'s DSL.
+     * <p>Examples:
+     * <ul>
+     *     <li>TimeCategory.of("2.days.from.now")</li>
+     *     <li>TimeCategory.of("14.minutes.ago")</li>
+     *     <li>TimeCategory.of("52.weeks.ago")</li>
+     * </ul>
+     * </p>
+     * @param code The Groovy DSL for {@code TimeCategory}
+     * @return TimeCategory in which date is retrieved via DSL
+     */
+    static ScriptedTimeCategory of(String code) {
+        return new ScriptedTimeCategory(code);
+    }
 
+    /**
+     * Returns a @{code java.util.Date}
+     * @return Date as determined by {@code groovy.time.TimeCategory}
+     */
+    Date get();
+
+    /**
+     * Returns a {@code java.time.LocalDate}
+     * @return A {@code LocalDate} retrieved from {@code groovy.time.TimeCategory}
+     */
     default LocalDate getLocalDate() {
         return get().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
     }
 
+    /**
+     * Returns a {@code java.time.LocalDateTime}
+     * @return A {@code LocalDate} retrieved from {@code groovy.time.TimeCategory}
+     */
     default LocalDateTime getLocalDateTime() {
         return get().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
     }
