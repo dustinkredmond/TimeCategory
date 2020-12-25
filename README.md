@@ -37,3 +37,17 @@ syntaxes are included for developer convenience.
     
     } 
 ```
+
+---
+
+### How to download
+
+The project is on Maven Central. Add the below in your POM.xml file to begin using the library.
+
+```xml
+<dependency>
+    <groupId>com.dustinredmond.groovytime</groupId>
+    <artifactId>TimeCategory</artifactId>
+    <version>1.0.1</version>
+</dependency>
+```
