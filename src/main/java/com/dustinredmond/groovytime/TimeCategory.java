@@ -40,13 +40,6 @@ public interface TimeCategory {
 
     /**
      * Invokes a call to {@code groovy.time.TimeCategory}'s DSL.
-     * <p>Examples:
-     * <ul>
-     *     <li>TimeCategory.of("2.days.from.now")</li>
-     *     <li>TimeCategory.of("14.minutes.ago")</li>
-     *     <li>TimeCategory.of("52.weeks.ago")</li>
-     * </ul>
-     * </p>
      * @param code The Groovy DSL for {@code TimeCategory}
      * @return TimeCategory in which date is retrieved via DSL
      */
