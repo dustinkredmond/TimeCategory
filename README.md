@@ -10,9 +10,15 @@ Apache Groovy's `groovy.time.TimeCategory` class makes working with dates a bree
     println 30.seconds.from.now
     // etc...
   }
+  
+  java.util.Date myDate;
+  use (TimeCategory) { myDate = 15.hours.ago }
+  
 ```
 
-This super small library provides a Java wrapper to allow us to make similar calls in Java.
+This tiny library provides a Java wrapper to allow us to make similar calls in Java as 
+we would in the Groovy TimeCategory DSL.
+
 We can get a `java.util.Date`, a `java.time.LocalDate`, or a `java.time.LocalDateTime`.
 
 We can either use chained method calls, or pass in a String which will be interpreted
